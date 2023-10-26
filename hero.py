@@ -20,10 +20,11 @@ class Hero:
 
         self.abilities = list()
         self.armors = list()
-        
         self.name = name
         self.starting_health = starting_health
         self.current_health = starting_health
+        self.deaths = 0
+        self.kills = 0
         
         
     def fight(self, opponent):
@@ -43,9 +44,22 @@ class Hero:
                 else:
                     self.take_damage(opponent.attack())
             if self.is_alive():
+                self.add_kill(1)
+                opponent.add_deaths(1)
                 print(f"{self.name} won!")
             else:
+                opponent.add_kill(1)
+                self.add_deaths(1)
                 print(f"{opponent.name} won!")
+                
+        
+        
+                
+        # TODO: Refactor this method to update the following:
+        # 1) the number of kills the hero (self) has when the opponent dies.
+        # 2) then number of kills the opponent has when the hero (self) dies
+        # 3) the number of deaths of the opponent if they die    in the fight
+        # 4) the number of deaths of the hero (self) if they die in the fight
                 
         
     
@@ -96,7 +110,14 @@ class Hero:
     def add_weapon(self, weapon):
         '''Add weapon to self.abilities'''
         self.abilities.append(weapon)
+        
+    def add_kill(self, num_kills):
+        '''Update self.kills by num_kills amount'''
+        self.kills += num_kills
 
+    def add_deaths(self, num_deaths):
+        '''Update deaths with num_deaths'''
+        self.deaths += num_deaths
 
 
 if __name__ == "__main__":
