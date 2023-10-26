@@ -38,9 +38,7 @@ class Hero:
         
         print(f"{winner.name} defeats {loser.name}! {winner.name} wins!")
         
-        
-# This should give you a decimal percent chance that hero should win the contest.
-        
+
 
 if __name__ == "__main__":
     # If you run this file from the terminal
